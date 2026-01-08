@@ -69,11 +69,47 @@ func Square (p *int)int{
 	return *p
 }
 
+// pointer jenis lain
+
+type Person struct{
+	Name string
+	Age int
+}
+
+func initPerson() *Person{
+	m := Person{
+		Name: "nia",
+		Age: 17,
+	}
+	
+	return &m
+}
+
+type Cafe struct {
+	Name string
+	Address string
+}
+
+func (c *Cafe) UbahNamaCafe(ubah *string)string{
+	c.Name = *ubah
+	return c.Name
+} 
+
 func main(){
+	cafe := Cafe{
+		Name : "rumah rehan",
+	}
+	fmt.Println("sebelum diubah: ",cafe.Name)
+
+	u := "28"
+	res := cafe.UbahNamaCafe(&u)
+	fmt.Println("sesudah nama cafe diubah: ",res)
 
 	a := 3
 	Square(&a)
 	fmt.Println(a)
+
+	fmt.Println(*initPerson())
 
 	rectValue := Rectangle{
 		Width: 2,
