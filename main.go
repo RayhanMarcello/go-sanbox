@@ -2,67 +2,6 @@ package main
 
 import "fmt"
 
-// func main() {
-// 	circ := Circle{
-// 		Radius: 7,
-// 	}
-
-// 	rect := Rectangle{
-// 		weight: 12,
-// 		height: 12,
-// 	}
-
-// 	fmt.Println(CalculateCircle(circ))
-// 	fmt.Println(rect.Area())
-
-// 	helloSay := Sapa{
-// 		Kalimat : "rayhan",
-// 	}
-
-// 	fmt.Println("hellow", helloSay.SayHello())
-
-// }
-
-// type Shape interface {
-// 	Area() float64
-// }
-
-// type Sapaan interface{
-// 	SayHello()string
-// }
-
-// type Circle struct {
-// 	Radius float64
-// }
-
-// type Rectangle struct{
-// 	weight, height float64
-// }
-
-// type Sapa struct{
-// 	Kalimat string
-// }
-// //
-// func (c Circle) Area() float64 {
-// 	return 2 * math.Pi * c.Radius
-// }
-
-// func (r Rectangle) Area() float64{
-// 	return r.height * r.weight
-// }
-
-// func (s Sapa) SayHello()string{
-// 	return s.Kalimat
-// }
-
-// //
-
-// func CalculateCircle(s Shape) float64{
-// 	return s.Area()
-// }
-
-// rectangle
-
 type Shape interface{
 	Area() int
 }
@@ -92,6 +31,13 @@ func UbahUsername(u *username){
 }
 
 /////////methode dengan pointer reciver////////////
+
+
+// kapan perlu pake pointer
+//  1. update state
+// pointer use 8 byte
+// 2. ketika whenn we want opitmize the memory
+
 type User struct{
 	Email string
 	Username string
@@ -106,7 +52,29 @@ func (u *User) updateUsername(username string){
 	u.Username = username
 }
 
+func Email(e User)string{
+	return e.Email
+}
+
+func GetAllUser()(User){
+	return User{
+		Username: "hahayy",
+	}
+}
+
+// pointer dari func lain
+
+func Square (p *int)int{
+	*p *= *p
+	return *p
+}
+
 func main(){
+
+	a := 3
+	Square(&a)
+	fmt.Println(a)
+
 	rectValue := Rectangle{
 		Width: 2,
 		Height: 2,
@@ -121,6 +89,9 @@ func main(){
 	
 	user.updateEmail("keren@gmail.com")
 	fmt.Println(user)
+
+
 	user.updateUsername("udah berubah ni")
 	fmt.Println(user)
+	fmt.Println(GetAllUser())	
 }
