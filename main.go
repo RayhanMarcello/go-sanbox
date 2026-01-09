@@ -56,7 +56,7 @@ func Email(e User)string{
 	return e.Email
 }
 
-func GetAllUser()(User){
+func GetAllUser() User{
 	return User{
 		Username: "hahayy",
 	}
@@ -95,7 +95,27 @@ func (c *Cafe) UbahNamaCafe(ubah *string)string{
 	return c.Name
 } 
 
+type orang struct{
+	namaLengkap string
+}
+
+func NewOrang()*orang{
+	return &orang{
+		namaLengkap: "bodat",
+	}
+}
+
+func (u *orang) handleChangeName(cn *string)string{
+	u.namaLengkap = *cn
+	return *cn 
+}
+
 func main(){
+	x := NewOrang()
+	changeNamed := "rayhan keren bangett"
+	x.handleChangeName(&changeNamed)
+	fmt.Println("sesudah: ",*x)
+
 	cafe := Cafe{
 		Name : "rumah rehan",
 	}
